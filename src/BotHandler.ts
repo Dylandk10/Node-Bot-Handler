@@ -2,9 +2,11 @@
     Handle all the commands from the input and return them with correct commands 
 */
 
+import { UserHandler } from "./UserHandler";
+
 export abstract class BotHandler{
     private static dictionary: Map<string, number> = new Map([["help", 1],
-                                                                ["players", 2],
+                                                                ["users", 2],
                                                                 ["leave", 3]]);
 
     public static getResponse(input: string): string {
@@ -22,7 +24,7 @@ export abstract class BotHandler{
                 result = "See list for more commands";
                 break;
             case 2:
-                result = "Number of players online: ";
+                result = "Number of players online: " + UserHandler.getNumberOfUsersOnline();
                 break;
             case 3:
                 result = "leave now with exit";

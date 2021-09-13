@@ -12,5 +12,14 @@
             comamnd <input type="text" name="command" required><br>
             <input type="submit">
         </form>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            //just for testing right now
+            const socket = io("http://127.0.0.1:8080");
+            socket.on("connection", () => {
+                console.log("Connecting to server.");
+            });
+        </script>
     </body>
 </html>
