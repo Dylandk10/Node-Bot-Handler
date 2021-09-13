@@ -15,6 +15,7 @@
 
         <script src="/socket.io/socket.io.js"></script>
         <script>
+
             //just for testing right now
             const socket = io("http://127.0.0.1:8080");
             socket.on("connection", (s) => {
@@ -29,6 +30,8 @@
                 list.appendChild(l);
             });
 
+
+            //send btn 
             document.getElementById("sendBtn").addEventListener("click", () => {
                 let msg = document.getElementById("msgField").value;
                 let list = document.getElementById("list");
