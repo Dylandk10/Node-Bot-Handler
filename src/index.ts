@@ -4,6 +4,7 @@ import { app } from './app';
 import * as http from 'http';
 import * as socketio from 'socket.io';
 import { UserHandler } from './UserHandler';
+import { BotHandler } from './BotHandler';
 
 //server config
 const PORT = 8080;
@@ -16,6 +17,12 @@ io.attach(server);
 io.on("connection", (socket: socketio.Socket)=> {
     console.log("user being added.");
     UserHandler.updateNumberOfUsersOnline(1);
+
+    //the chat bot messages 
+    socket.on("bot-message", (message: string) => {
+        let result: string = BotHandler.getResponse(message);
+        socket.emit("bot-message", result);
+    });
 
     socket.on("disconnect", () => {
         console.log("user disconnected");

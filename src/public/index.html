@@ -3,22 +3,39 @@
     <head>
         <title>Home</title>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="CSS/index.css">
     </head>
     <body>
         <h1>Welcome Dylan kelly</h1>
+        <ul id="list">
 
-        <form method="post" action="/getData">
-            Username: <input type="text" name="username" required><br>
-            comamnd <input type="text" name="command" required><br>
-            <input type="submit">
-        </form>
+        </ul>
+        <label for="msg">Message:</label>
+        <input id="msgField" type="text" name="msg" required><button id="sendBtn">Send</button>
 
         <script src="/socket.io/socket.io.js"></script>
         <script>
             //just for testing right now
             const socket = io("http://127.0.0.1:8080");
-            socket.on("connection", () => {
+            socket.on("connection", (s) => {
                 console.log("Connecting to server.");
+            });
+
+            //when bot message reccieved
+            socket.on("bot-message", (message) => {
+                let list = document.getElementById("list");
+                let l = document.createElement('li');
+                l.innerHTML = "<li style='color:red;'> BOT: "+message+"</li>";
+                list.appendChild(l);
+            });
+
+            document.getElementById("sendBtn").addEventListener("click", () => {
+                let msg = document.getElementById("msgField").value;
+                let list = document.getElementById("list");
+                let l = document.createElement('li');
+                l.innerHTML = "<li> YOU: "+msg+"</li>";
+                list.appendChild(l);
+                socket.emit("bot-message", msg);
             });
         </script>
     </body>

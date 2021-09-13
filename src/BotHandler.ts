@@ -27,7 +27,7 @@ export abstract class BotHandler{
                 result = "Number of players online: " + UserHandler.getNumberOfUsersOnline();
                 break;
             case 3:
-                result = "leave now with exit";
+                result = "You can leave by closing the window";
                 break;
         }
         return result;  

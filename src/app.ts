@@ -25,9 +25,8 @@ app.post("/getData", (req: express.Request, resp: express.Response, next: expres
     const command:string = req.body.command;
     const result:string = BotHandler.getResponse(command);
     console.log(`The result from command ${result}`);
-    resp.sendStatus(200);
+    resp.send(`${result}`);
 });
-
 
 export { app };
 
