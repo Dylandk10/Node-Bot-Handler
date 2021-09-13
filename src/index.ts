@@ -14,14 +14,19 @@ const io: socketio.Server = new socketio.Server();
 io.attach(server);
 
 
-//on connection and disconnection 
+
+//on connection and disconnection - sockets
 io.on("connection", (socket: socketio.Socket)=> {;
     UserHandler.updateNumberOfUsersOnline(1);
     UserHandler.addNewUser(socket.id);
 
     //the chat bot messages 
     socket.on("bot-message", (message: string) => {
-        let result: string = BotHandler.getResponse(message);
+        const result: string = BotHandler.getResponse(message);
+        const user: User | null = UserHandler.getUser(socket.id);
+        if(user) {
+            user.addToMessageCount();
+        }
         socket.emit("bot-message", result);
     });
 
