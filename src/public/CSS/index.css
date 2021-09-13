@@ -1,13 +1,15 @@
 #list li {
     list-style-type: none;
 }
-ul {
-    position: aboslute;
+#container {
+    position: absolute;
     bottom: 0;
 }
 #chat-box {
+    position: relative;
     width: 30%;
     height: 60%;
     border: 1px solid balck;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
 }

@@ -39,6 +39,7 @@ export abstract class UserHandler {
                 if(this.users[i].getId() == id) {
                     this.users.splice(i,1);
                     console.log("User removed from handler");
+                    break;
                 }
             }
         }

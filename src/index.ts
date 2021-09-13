@@ -19,6 +19,7 @@ io.attach(server);
 io.on("connection", (socket: socketio.Socket)=> {;
     UserHandler.updateNumberOfUsersOnline(1);
     UserHandler.addNewUser(socket.id);
+    socket.emit("bot-message", "How can I help you?");
 
     //the chat bot messages 
     socket.on("bot-message", (message: string) => {

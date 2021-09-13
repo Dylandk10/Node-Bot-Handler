@@ -8,40 +8,16 @@
     <body>
         <h1>Welcome Dylan kelly</h1>
         <div id="chat-box">
-            <ul id="list">
+            <div id="container">
+                <ul id="list">
 
-            </ul>
+                </ul>
+            </div>
         </div>
         <label for="msg">Message:</label>
         <input id="msgField" type="text" name="msg" required><button id="sendBtn">Send</button>
 
         <script src="/socket.io/socket.io.js"></script>
-        <script>
-
-            //just for testing right now
-            const socket = io("http://127.0.0.1:8080");
-            socket.on("connection", (s) => {
-                console.log("Connecting to server.");
-            });
-
-            //when bot message reccieved
-            socket.on("bot-message", (message) => {
-                let list = document.getElementById("list");
-                let l = document.createElement('li');
-                l.innerHTML = "<li style='color:red;'> BOT: "+message+"</li>";
-                list.appendChild(l);
-            });
-
-
-            //send btn 
-            document.getElementById("sendBtn").addEventListener("click", () => {
-                let msg = document.getElementById("msgField").value;
-                let list = document.getElementById("list");
-                let l = document.createElement('li');
-                l.innerHTML = "<li> YOU: "+msg+"</li>";
-                list.appendChild(l);
-                socket.emit("bot-message", msg);
-            });
-        </script>
+        <script src="JS/index.js"></script>
     </body>
 </html>
